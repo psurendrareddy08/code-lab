@@ -1,0 +1,14 @@
+# Media / large assets
+*.mp4
+*.mov
+*.avi
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Python server cache
+__pycache__/
