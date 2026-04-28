@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "buildCommand": "cp -r Training explorer/Training",
+  "outputDirectory": "explorer",
+  "installCommand": ""
+}

@@ -7,8 +7,16 @@ let currentProject    = null;
 let currentFileIdx    = 0;
 let currentTab        = 'code';
 
-// Base path for live preview iframes (relative to explorer/index.html)
-const TRAINING_PATH = '../Training/';
+// Base path for live preview iframes.
+// Locally (python server from D:\train\Training): files are at ../Training/
+// On Vercel (cp -r Training explorer/Training at build): files are at Training/
+const TRAINING_PATH = (function() {
+  const host = window.location.hostname;
+  // If served from localhost or 127.0.0.1, use the local relative path
+  if (host === 'localhost' || host === '127.0.0.1') return '../Training/';
+  // On Vercel or any remote host, Training is copied into explorer/
+  return 'Training/';
+})();
 
 /* ── Init ────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -296,7 +304,7 @@ function openPortfolioPreview() {
   const wrap  = document.getElementById('portfolioIframe');
   const frame = document.getElementById('portfolioFrame');
   wrap.style.display = 'block';
-  frame.src = TRAINING_PATH + '../Training/portifolio/index.html';
+  frame.src = TRAINING_PATH + 'portifolio/index.html';
   wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
